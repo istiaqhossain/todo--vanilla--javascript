@@ -1,23 +1,37 @@
 (function(){
     
 	"use strict";
-
-	todo_create_element('main','imain--container imain--wrapper');
-
-	function todo_create_element(tag_name,class_name = false){
-		
-		class_name = class_name.split(" ");
-		
-		let new_dom = document.createElement(tag_name);
-		
-		if(class_name.length > 0){
-			class_name.forEach(function(el) {
-			  new_dom.classList.add(el);
-			});
-		}
-
-		console.log(new_dom);
-		return new_dom;
-	}
+	
+	create_dom('body', 'div', [['class', 'iwrapper']]);
+	
 
 })();
+
+/**
+ * Create Dom 
+ */
+function create_dom(parent, tag, attr = '') {
+	
+	let element = document.createElement(tag);
+	
+	parent = dom(parent);
+
+	if (Array.isArray(attr) && Array.isArray(attr[0])){
+		attr.forEach(function(el){
+			element.setAttribute(el[0], el[1]);
+		});
+	}
+
+	return parent[0].appendChild(element);
+
+}
+
+
+/**
+ * Select Dom by selector
+ */
+function dom(node) {
+	
+	return document.querySelectorAll(node);
+
+}
