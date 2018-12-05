@@ -7,11 +7,19 @@ Website:
 Last Update: 
 -------------------------------------------------------------------*/
 
+@import "grid.css";
+
 /*------------------------------------------------------------------
 [Table of contents ]
 Body
 xx:  Typography
+xx:  Header
 -------------------------------------------------------------------*/
+
+
+/* ----------------------------------------- *\
+   xx: Typography
+\* ----------------------------------------- */
 
 html { 
   background: url('../img/background.jpg') no-repeat center center fixed; 
@@ -24,4 +32,25 @@ html {
 body {
 	margin: 0;
 	font-family: 'Quicksand', sans-serif;
+}
+
+
+/* ----------------------------------------- *\
+   xx: Header
+\* ----------------------------------------- */
+h1.page--title {
+    color: #fff;
+    position: relative;
+    padding-left: 50px;
+    text-transform: uppercase;
+    text-shadow: 0 0 26px rgba(0,0,0,0.98);
+}
+h1.page--title:before {
+    left: 0;
+    top: 50%;
+    font-weight: 900;
+    content: "\f0cb";
+    position: absolute;
+    font-family: 'Font Awesome 5 Free';
+    transform: translate(0%,-50%);
 }
