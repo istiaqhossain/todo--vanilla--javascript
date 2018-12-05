@@ -30,17 +30,31 @@ function building_layout(){
 	create_dom('.page--content--container','div',[['class','icontainer']]);
 	// irow
 	create_dom('.page--content--container .icontainer','div',[['class','irow']]);
-	// icol--6 itodo--form--wrapper
+	// icol--5 itodo--form--wrapper
 	create_dom('.page--content--container .icontainer .irow','div',[['class','icol--5 itodo--form--wrapper']]);
-	// icol--6 itodo--list--wrapper
-	create_dom('.page--content--container .icontainer .irow','div',[['class','icol--7 itodo--list--wrapper']]);
+	// icol--2
+	create_dom('.page--content--container .icontainer .irow','div',[['class','icol--2']]);
+	// icol--5 itodo--list--wrapper
+	create_dom('.page--content--container .icontainer .irow','div',[['class','icol--5 itodo--list--wrapper']]);
+
+	// itodo--form--inner--wrapper
+	create_dom('.itodo--form--wrapper','div',[['class','itodo--form--inner--wrapper']]);
+	// iform--control itask--name
+	create_dom('.itodo--form--wrapper .itodo--form--inner--wrapper','input',[['type','text'],['class','iform--control itask--name']]);
+	// iform--control itask--button
+	create_dom('.itodo--form--wrapper .itodo--form--inner--wrapper','button',[['type','button'],['class','iform--control itask--button']]).innerHTML = 'Add New Task';
 
 	// itodo--list--inner--wrapper
-	create_dom('.itodo--form--wrapper','div',[['class','itodo--list--inner--wrapper']]);
-	// iform--control itask--name
-	create_dom('.itodo--form--wrapper .itodo--list--inner--wrapper','input',[['type','text'],['class','iform--control itask--name']]);
-	// iform--control itask--button
-	create_dom('.itodo--form--wrapper .itodo--list--inner--wrapper','button',[['type','button'],['class','iform--control itask--button']]).innerHTML = 'Add New Task';
+	create_dom('.itodo--list--wrapper','div',[['class','itodo--list--inner--wrapper']]);
+	// list-unstyled
+	create_dom('.itodo--list--wrapper .itodo--list--inner--wrapper','ul',[['class','ifilter--wrapper list--unstyled']]);
+	// li
+	create_dom('.itodo--list--wrapper .itodo--list--inner--wrapper .ifilter--wrapper','li',[['class','all--tasks']]).innerHTML = 'All';
+	// li
+	create_dom('.itodo--list--wrapper .itodo--list--inner--wrapper .ifilter--wrapper','li',[['class','completed--tasks']]).innerHTML = 'Completed';
+	// li
+	create_dom('.itodo--list--wrapper .itodo--list--inner--wrapper .ifilter--wrapper','li',[['class','active--tasks']]).innerHTML = 'Active';
+
 }
 
 /**

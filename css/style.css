@@ -15,6 +15,7 @@ Body
 xx:  Typography
 xx:  Header
 xx:  Form Wrapper
+xx:  List Wrapper
 -------------------------------------------------------------------*/
 
 
@@ -61,6 +62,15 @@ button[type=button].iform--control {
     font-family: 'Quicksand', sans-serif;
 }
 
+.list--unstyled {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.list--unstyled li {
+  display: inline-block;
+}
+
 
 /* ----------------------------------------- *\
    xx: Header
@@ -85,6 +95,18 @@ h1.page--title:before {
 /* ----------------------------------------- *\
    xx: Form Wrapper
 \* ----------------------------------------- */
-.itodo--list--inner--wrapper {
+.itodo--form--inner--wrapper {
     padding: 50px 0 0 0;
+}
+
+/* ----------------------------------------- *\
+   xx: List Wrapper
+\* ----------------------------------------- */
+.ifilter--wrapper li {
+    color: #ddd;
+    margin: 0 30px;
+    font-size: 24px;
+    cursor: pointer;
+    font-weight: bold;
+    text-shadow: 0 0 1px rgba(0,0,0,0.98);
 }
