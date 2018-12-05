@@ -11,18 +11,29 @@
  */
 function building_layout(){
 	
+	// page--title--container
+	create_dom('body','div',[['class','page--title--container']]);
 	// icontainer
-	create_dom('body','div',[['class','icontainer']]);
+	create_dom('.page--title--container','div',[['class','icontainer']]);
 	// irow
-	create_dom('.icontainer','div',[['class','irow']]);
+	create_dom('.page--title--container .icontainer','div',[['class','irow']]);
 	// icol--12
-	create_dom('.irow','div',[['class','icol--12']]);
+	create_dom('.page--title--container .icontainer .irow','div',[['class','icol--12']]);
 	// page--title--wrapper
-	create_dom('.icol--12','div',[['class','page--title--wrapper']]);
+	create_dom('.page--title--container .icontainer .irow .icol--12','div',[['class','page--title--wrapper']]);
 	// page--title
 	create_dom('.page--title--wrapper','h1',[['class','page--title']]).innerHTML = 'ToDo Vanilla Javascript';
 
-
+	// page--content--container
+	create_dom('body','div',[['class','page--content--container']]);
+	// icontainer
+	create_dom('.page--content--container','div',[['class','icontainer']]);
+	// irow
+	create_dom('.page--content--container .icontainer','div',[['class','irow']]);
+	// icol--6 itodo--form--wrapper
+	create_dom('.page--content--container .icontainer .irow','div',[['class','icol--6 itodo--form--wrapper']]);
+	// icol--6 itodo--list--wrapper
+	create_dom('.page--content--container .icontainer .irow','div',[['class','icol--6 itodo--list--wrapper']]);
 }
 
 /**
