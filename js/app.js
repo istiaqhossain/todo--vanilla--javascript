@@ -31,9 +31,16 @@ function building_layout(){
 	// irow
 	create_dom('.page--content--container .icontainer','div',[['class','irow']]);
 	// icol--6 itodo--form--wrapper
-	create_dom('.page--content--container .icontainer .irow','div',[['class','icol--6 itodo--form--wrapper']]);
+	create_dom('.page--content--container .icontainer .irow','div',[['class','icol--5 itodo--form--wrapper']]);
 	// icol--6 itodo--list--wrapper
-	create_dom('.page--content--container .icontainer .irow','div',[['class','icol--6 itodo--list--wrapper']]);
+	create_dom('.page--content--container .icontainer .irow','div',[['class','icol--7 itodo--list--wrapper']]);
+
+	// itodo--list--inner--wrapper
+	create_dom('.itodo--form--wrapper','div',[['class','itodo--list--inner--wrapper']]);
+	// iform--control itask--name
+	create_dom('.itodo--form--wrapper .itodo--list--inner--wrapper','input',[['type','text'],['class','iform--control itask--name']]);
+	// iform--control itask--button
+	create_dom('.itodo--form--wrapper .itodo--list--inner--wrapper','button',[['type','button'],['class','iform--control itask--button']]).innerHTML = 'Add New Task';
 }
 
 /**
