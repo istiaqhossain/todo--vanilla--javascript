@@ -1,7 +1,7 @@
 (function(){
     
 	"use strict";
-	
+
 	building_layout();
 
 })();
@@ -47,7 +47,7 @@ function building_layout(){
 	// itodo--list--inner--wrapper
 	create_dom('.itodo--list--wrapper','div',[['class','itodo--list--inner--wrapper']]);
 	// list-unstyled
-	create_dom('.itodo--list--wrapper .itodo--list--inner--wrapper','ul',[['class','ifilter--wrapper list--unstyled']]);
+	create_dom('.itodo--list--wrapper .itodo--list--inner--wrapper','ul',[['class','ifilter--wrapper list--unstyled text-center']]);
 	// li
 	create_dom('.itodo--list--wrapper .itodo--list--inner--wrapper .ifilter--wrapper','li',[['class','all--tasks']]).innerHTML = 'All';
 	// li
@@ -55,6 +55,36 @@ function building_layout(){
 	// li
 	create_dom('.itodo--list--wrapper .itodo--list--inner--wrapper .ifilter--wrapper','li',[['class','active--tasks']]).innerHTML = 'Active';
 
+	render_list();
+}
+
+/**
+ * Render List
+ */
+function render_list(){
+	let todoList = get_data();
+
+	if(todoList.length == 0 ){
+		// itodo--no--todos
+		create_dom('.itodo--list--wrapper .itodo--list--inner--wrapper','div',[['class','itodo--no--todos text-center']]);
+		// no--todos--content
+		create_dom('.itodo--list--wrapper .itodo--list--inner--wrapper .itodo--no--todos','p',[['class','no--todos--content']]).innerHTML = 'There is no todos';
+	}
+}
+
+/**
+ * Get Data 
+ */
+function get_data(){
+
+	var todoList = [];
+	var storage = localStorage.getItem('md_istiaq_hossain_todolist_sunday');
+
+	if(storage !== null){
+		todoList = JSON.parse(storage);
+	}
+
+	return todoList;
 }
 
 /**
@@ -71,8 +101,6 @@ function create_dom(parent, tag, attr = '') {
 			element.setAttribute(el[0], el[1]);
 		});
 	}
-
-	console.log(parent[0]);
 
 	return parent[0].appendChild(element);
 

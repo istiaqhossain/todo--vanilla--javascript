@@ -70,7 +70,9 @@ button[type=button].iform--control {
 .list--unstyled li {
   display: inline-block;
 }
-
+.text-center {
+  text-align: center;
+}
 
 /* ----------------------------------------- *\
    xx: Header
@@ -103,10 +105,17 @@ h1.page--title:before {
    xx: List Wrapper
 \* ----------------------------------------- */
 .ifilter--wrapper li {
-    color: #ddd;
+    color: #fff;
     margin: 0 30px;
     font-size: 24px;
     cursor: pointer;
     font-weight: bold;
-    text-shadow: 0 0 1px rgba(0,0,0,0.98);
+    text-shadow: 0 0 15px rgba(0,0,0,0.98);
+}
+.itodo--no--todos {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0 0 black;
+    text-shadow: 0 0 15px rgba(0,0,0,0.98);
 }
