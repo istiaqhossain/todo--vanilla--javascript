@@ -42,11 +42,15 @@ input[type=text].iform--control {
   outline: none;
   display: block;
   font-size: 21px;
-  border: 0px solid;
+  border: 2px solid #fff;
   padding: 0px 15px;
   border-radius: 4px;
   margin-bottom: 30px;
   font-family: 'Quicksand', sans-serif;
+}
+
+input[type=text].iform--control.field-error {
+    border-color: #F44336;
 }
 
 button[type=button].iform--control {
@@ -112,6 +116,11 @@ h1.page--title:before {
     font-weight: bold;
     text-shadow: 0 0 15px rgba(0,0,0,0.98);
 }
+
+.ifilter--wrapper li.active {
+    color: #ddd;
+}
+
 .itodo--no--todos {
     color: #fff;
     font-size: 24px;
@@ -119,3 +128,32 @@ h1.page--title:before {
     box-shadow: 0 0 black;
     text-shadow: 0 0 15px rgba(0,0,0,0.98);
 }
+
+.itodo--list--container {
+    margin: 20px 0;
+}
+.itodo--list--container li{
+    display: block;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    font-size: 19px;
+    line-height: 21px;
+}
+.itodo--list--container li:first-child{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.itodo--list--container li:last-child{
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.itodo--list--container li button{
+    background-color: transparent;
+    border: 0px solid;
+    cursor: pointer;
+    margin-right: 10px;
+    outline: none;
+    font-size: 20px;
+}
+.itodo--list--container li button i{}
