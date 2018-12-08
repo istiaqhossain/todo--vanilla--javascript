@@ -69,6 +69,9 @@ function add_listener(){
 
 	itask_btn.addEventListener('click',add_data);
 
+	let filters = dom('.ifilter--wrapper li');
+	console.log(filters);
+
 }
 
 /*
@@ -159,6 +162,8 @@ function render_list(){
 
 			dom('.itodo--item--'+element.ID)[0].appendChild(btn);
 			dom('.itodo--item--'+element.ID)[0].appendChild(text);
+
+			// <i class="fas fa-ellipsis-v"></i>
 		});
 	}
 
