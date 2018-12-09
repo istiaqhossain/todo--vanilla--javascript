@@ -13,19 +13,21 @@
  */
 function building_layout(){
 	
-	// page--title--container
-	create_dom('body','div',[['class','page--title--container']]);
-	// icontainer
-	create_dom('.page--title--container','div',[['class','icontainer']]);
-	// irow
-	create_dom('.page--title--container .icontainer','div',[['class','irow']]);
-	// icol--12
-	create_dom('.page--title--container .icontainer .irow','div',[['class','icol--12']]);
-	// page--title--wrapper
-	create_dom('.page--title--container .icontainer .irow .icol--12','div',[['class','page--title--wrapper']]);
-	// page--title
-	create_dom('.page--title--wrapper','h1',[['class','page--title']]).innerHTML = 'ToDo Vanilla Javascript';
+	page_title_container();
 
+	page_content_container();
+
+	form_container();
+
+	filter_container();
+
+	render_list();
+}
+
+/*
+*	Page Content Container
+*/
+function page_content_container(){
 	// page--content--container
 	create_dom('body','div',[['class','page--content--container']]);
 	// icontainer
@@ -38,14 +40,45 @@ function building_layout(){
 	create_dom('.page--content--container .icontainer .irow','div',[['class','icol--2']]);
 	// icol--5 itodo--list--wrapper
 	create_dom('.page--content--container .icontainer .irow','div',[['class','icol--5 itodo--list--wrapper']]);
+}
 
+
+/*
+*	Page Title Container
+*/
+function page_title_container(){
+	// page--title--container
+	create_dom('body','div',[['class','page--title--container']]);
+	// icontainer
+	create_dom('.page--title--container','div',[['class','icontainer']]);
+	// irow
+	create_dom('.page--title--container .icontainer','div',[['class','irow']]);
+	// icol--12
+	create_dom('.page--title--container .icontainer .irow','div',[['class','icol--12']]);
+	// page--title--wrapper
+	create_dom('.page--title--container .icontainer .irow .icol--12','div',[['class','page--title--wrapper']]);
+	// page--title
+	create_dom('.page--title--wrapper','h1',[['class','page--title']]).innerHTML = 'ToDo Vanilla Javascript';
+}
+
+
+
+/*
+*	Form Container
+*/
+function form_container(){
 	// itodo--form--inner--wrapper
 	create_dom('.itodo--form--wrapper','div',[['class','itodo--form--inner--wrapper']]);
 	// iform--control itask--name
 	create_dom('.itodo--form--wrapper .itodo--form--inner--wrapper','input',[['type','text'],['class','iform--control itask--name']]);
 	// iform--control itask--button
 	create_dom('.itodo--form--wrapper .itodo--form--inner--wrapper','button',[['type','button'],['class','iform--control itask--button']]).innerHTML = 'Add New Task';
+}
 
+/*
+*	Filter Container
+*/
+function filter_container(){
 	// itodo--list--inner--wrapper
 	create_dom('.itodo--list--wrapper','div',[['class','itodo--list--inner--wrapper']]);
 	// list-unstyled
@@ -56,9 +89,8 @@ function building_layout(){
 	create_dom('.itodo--list--wrapper .itodo--list--inner--wrapper .ifilter--wrapper','li',[['class','completed--tasks']]).innerHTML = 'Completed';
 	// li
 	create_dom('.itodo--list--wrapper .itodo--list--inner--wrapper .ifilter--wrapper','li',[['class','active--tasks']]).innerHTML = 'Active';
-
-	render_list();
 }
+
 
 /**
 * Add Listener
