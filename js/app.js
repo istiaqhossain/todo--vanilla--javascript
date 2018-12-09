@@ -292,6 +292,7 @@ function validateInputs(){
 		
 		flag = false;
 		task.classList.add('field-error');
+		alert('Please enter valid task.');
 
 	}else{
 		
