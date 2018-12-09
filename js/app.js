@@ -130,7 +130,11 @@ function add_data(){
 
 		todoList[key].task = request_data;
 
-		set_data(todoList);
+		if (confirm('Are you sure?')) {
+
+			set_data(todoList);
+
+		}
 
 	}
 
@@ -284,7 +288,7 @@ function validateInputs(){
 	
 	let task = dom('.itask--name')[0];
 
-	if(task.value.length == 0){
+	if(task.value.trim().length == 0){
 		
 		flag = false;
 		task.classList.add('field-error');
@@ -383,15 +387,18 @@ function filter_lists(){
  * Delete List
  */
 function delete_list(key){
-	
-	let todoList = get_data();
 
-	todoList.splice(key,1);
+	if (confirm('Are you sure?')) {
 
-	set_data(todoList);
-	reset_inputs();
-	reset_list();
-	render_list();
+		let todoList = get_data();
+
+		todoList.splice(key,1);
+
+		set_data(todoList);
+		reset_inputs();
+		reset_list();
+		render_list();
+	}
 
 }
 
