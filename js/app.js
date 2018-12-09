@@ -70,7 +70,10 @@ function add_listener(){
 	itask_btn.addEventListener('click',add_data);
 
 	let filters = dom('.ifilter--wrapper li');
-	console.log(filters);
+	
+	filters.forEach(function(element, key){
+		element.addEventListener('click',filter_lists);
+	});
 
 }
 
@@ -119,6 +122,16 @@ function add_data(){
 		sync_data(task,request_status);
 		
 
+	}else if(request_status == 'Save'){
+
+		let todoList = get_data();
+
+		let key = dom('.itask--name')[0].dataset.key;
+
+		todoList[key].task = request_data;
+
+		set_data(todoList);
+
 	}
 
 	reset_inputs();
@@ -131,7 +144,9 @@ function add_data(){
  * Render List
  */
 function render_list(){
-	
+
+	let filter_active = dom('.ifilter--wrapper .active')[0].innerHTML;
+
 	let todoList = get_data();
 
 	if(todoList.length == 0 ){
@@ -144,6 +159,16 @@ function render_list(){
 		create_dom('.itodo--list--wrapper .itodo--list--inner--wrapper','ul',[['class','itodo--list--container list--unstyled']]);
 
 		todoList.forEach( function(element, key) {
+
+			if(filter_active == 'Completed'){
+				if(element.status !== 'completed'){
+					return false;
+				}
+			}else if(filter_active == 'Active'){
+				if(element.status !== 'active'){
+					return false;
+				}
+			}
 			
 			let btn = create_element('button',[['onclick','update_status('+key+')']]);
 			
@@ -163,7 +188,23 @@ function render_list(){
 			dom('.itodo--item--'+element.ID)[0].appendChild(btn);
 			dom('.itodo--item--'+element.ID)[0].appendChild(text);
 
-			// <i class="fas fa-ellipsis-v"></i>
+			// action--container
+			create_dom('.itodo--list--container li.itodo--item--'+element.ID,'div',[['class','action--container']]);
+
+			let span = create_element('span',[['','']]);
+
+			span.innerHTML = '<i class="fas fa-ellipsis-v"></i><i class="fas fa-ellipsis-v"></i>';
+
+			dom('.itodo--list--container li.itodo--item--'+element.ID+' .action--container')[0].appendChild(span);
+
+			// ul action--list
+			create_dom('.itodo--list--container li.itodo--item--'+element.ID+' .action--container','ul',[['class','action--list']]);
+
+			// li
+			create_dom('.itodo--list--container li.itodo--item--'+element.ID+' .action--container .action--list','li',[['onclick','edit_list('+key+')']]).innerHTML = '<i class="fas fa-pen"></i> Edit';
+			// li
+			create_dom('.itodo--list--container li.itodo--item--'+element.ID+' .action--container .action--list','li',[['onclick','delete_list('+key+')']]).innerHTML = '<i class="fas fa-trash"></i> Delete';
+
 		});
 	}
 
@@ -274,6 +315,12 @@ function reset_inputs(){
 	let task = dom('.itask--name')[0];
 
 	task.value = '';
+
+	task.removeAttribute('data-key');
+
+	let btn = dom('.itask--button')[0];
+
+	btn.innerHTML = 'Add New Task';
 }
 
 /*
@@ -311,4 +358,55 @@ function update_status(key){
 	reset_list();
 	render_list();
 
+}
+
+/**
+ * Filter Lists
+ */
+function filter_lists(){
+	let filters = dom('.ifilter--wrapper li');
+	
+	filters.forEach(function(element, key){
+		if(element.classList.contains('active') == true){
+			element.classList.remove('active');
+		}
+	});
+
+	this.classList.add('active');
+
+	reset_inputs();
+	reset_list();
+	render_list();
+}
+
+/**
+ * Delete List
+ */
+function delete_list(key){
+	
+	let todoList = get_data();
+
+	todoList.splice(key,1);
+
+	set_data(todoList);
+	reset_inputs();
+	reset_list();
+	render_list();
+
+}
+
+/**
+ * Edit List
+ */
+function edit_list(key){
+
+	let todoList = get_data();
+
+	dom('.itask--name')[0].value = todoList[key].task;
+
+	dom('.itask--name')[0].setAttribute('data-key',key);
+
+	dom('.itask--button')[0].innerHTML = 'Save';
+
+	
 }

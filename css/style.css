@@ -130,7 +130,7 @@ h1.page--title:before {
 }
 
 .itodo--list--container {
-    margin: 20px 0;
+    margin: 20px 0 85px 0;
 }
 .itodo--list--container li{
     display: block;
@@ -156,4 +156,31 @@ h1.page--title:before {
     outline: none;
     font-size: 20px;
 }
-.itodo--list--container li button i{}
+.action--container {
+    float: right;
+    position: relative;
+    cursor: pointer;
+    padding: 0 0 0 10px;
+}
+.action--container:hover ul.action--list {
+  visibility: visible;
+  opacity: 1;
+}
+ul.action--list {
+    display: block;
+    background: #ffffff;
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    right: 0;
+    padding: 0;
+    width: 150px;
+    z-index: 9999;
+}
+ul.action--list li{
+    border-radius: 0px !important;
+    padding: 15px;
+}
+ul.action--list li i{
+  padding-right: 10px;
+}
