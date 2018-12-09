@@ -226,8 +226,21 @@ function get_data(){
 		todoList = JSON.parse(storage);
 	}
 
+	todoList.sort(alpha_sort);
+
 	return todoList;
 }
+
+/**
+*	Alpha Sort
+*/
+function alpha_sort(a, b){
+	if(a.task < b.task) { return -1; }
+    if(a.task > b.task) { return 1; }
+    return 0;
+}
+
+
 
 /**
  * Create Dom 
