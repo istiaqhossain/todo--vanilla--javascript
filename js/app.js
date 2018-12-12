@@ -179,9 +179,9 @@ function add_data(){
 /**
  * Render List
  */
-function render_list(){
+function render_list(filter_active){
 
-	let filter_active = dom('.ifilter--wrapper .active')[0].innerHTML;
+	//let filter_active = dom('.ifilter--wrapper .active')[0].innerHTML;
 
 	let todoList = get_data();
 
@@ -397,11 +397,15 @@ function update_status(key){
 	
 	let todoList = get_data();
 
+	let currentState = todoList[key].status;
+
 	if(todoList[key].status == 'active'){
 		todoList[key].status = 'completed';
 	}else{
 		todoList[key].status = 'active';
 	}
+
+	console.log(currentState);
 
 	set_data(todoList);
 	reset_inputs();
@@ -426,7 +430,7 @@ function filter_lists(){
 
 	reset_inputs();
 	reset_list();
-	render_list();
+	render_list(this.innerHTML);
 }
 
 /**
