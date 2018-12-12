@@ -136,6 +136,7 @@ function add_data(){
 	
 	let request_status = this.innerHTML;
 	let request_data = dom('.itask--name')[0].value;
+	let currentState = capitalizeFirstLetter('all');
 
 	if(validateInputs() == false){
 		
@@ -164,6 +165,8 @@ function add_data(){
 
 		if (confirm('Are you sure?')) {
 
+			currentState = capitalizeFirstLetter(todoList[key].status);
+
 			set_data(todoList);
 
 		}
@@ -172,7 +175,7 @@ function add_data(){
 
 	reset_inputs();
 	reset_list();
-	render_list();
+	render_list(currentState);
 }
 
 
@@ -180,8 +183,6 @@ function add_data(){
  * Render List
  */
 function render_list(filter_active){
-
-	//let filter_active = dom('.ifilter--wrapper .active')[0].innerHTML;
 
 	let todoList = get_data();
 
@@ -391,13 +392,20 @@ function reset_list(){
 }
 
 /*
+*	Capital First Letter
+*/
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+/*
 *	Update Status of Item
 */
 function update_status(key){
 	
 	let todoList = get_data();
 
-	let currentState = todoList[key].status;
+	let currentState = capitalizeFirstLetter(todoList[key].status);
 
 	if(todoList[key].status == 'active'){
 		todoList[key].status = 'completed';
@@ -405,12 +413,10 @@ function update_status(key){
 		todoList[key].status = 'active';
 	}
 
-	console.log(currentState);
-
 	set_data(todoList);
 	reset_inputs();
 	reset_list();
-	render_list();
+	render_list(currentState);
 
 }
 
@@ -419,6 +425,13 @@ function update_status(key){
  */
 function filter_lists(){
 	let filters = dom('.ifilter--wrapper li');
+	let currentState = capitalizeFirstLetter('all');
+
+	if(this.innerHTML == 'Completed'){
+		currentState = 'Completed';		
+	}else if(this.innerHTML == 'Active'){
+		currentState = 'Active';		
+	}
 	
 	filters.forEach(function(element, key){
 		if(element.classList.contains('active') == true){
@@ -430,7 +443,7 @@ function filter_lists(){
 
 	reset_inputs();
 	reset_list();
-	render_list(this.innerHTML);
+	render_list(currentState);
 }
 
 /**
@@ -442,12 +455,14 @@ function delete_list(key){
 
 		let todoList = get_data();
 
+		let currentState = capitalizeFirstLetter(todoList[key].status);
+
 		todoList.splice(key,1);
 
 		set_data(todoList);
 		reset_inputs();
 		reset_list();
-		render_list();
+		render_list(currentState);
 	}
 
 }
