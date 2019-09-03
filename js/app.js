@@ -93,6 +93,18 @@ function filter_container(){
 
 
 /**
+ * Get Current Filter 
+ */
+function get_current_filter() {
+	let filters = dom('.ifilter--wrapper li');
+	filters.forEach(function(element, key){
+		if(element.classList.contains('active') == true){
+			return element.innerHTML;
+		}
+	});
+}
+
+/**
 * Add Listener
 */
 function add_listener(){
@@ -182,7 +194,7 @@ function add_data(){
 /**
  * Render List
  */
-function render_list(filter_active){
+function render_list(filter_active = 'All'){
 
 	let todoList = get_data();
 
@@ -196,15 +208,11 @@ function render_list(filter_active){
 		create_dom('.itodo--list--wrapper .itodo--list--inner--wrapper','ul',[['class','itodo--list--container list--unstyled']]);
 
 		todoList.forEach( function(element, key) {
-
-			if(filter_active == 'Completed'){
-				if(element.status !== 'completed'){
-					return false;
-				}
-			}else if(filter_active == 'Active'){
-				if(element.status !== 'active'){
-					return false;
-				}
+			
+			if( (filter_active == 'Completed') && (element.status !== 'completed') ){
+				return false;
+			}else if( (filter_active == 'Active') && (element.status !== 'active') ){
+				return false;
 			}
 			
 			let btn = create_element('button',[['onclick','update_status('+key+')']]);
@@ -404,8 +412,15 @@ function capitalizeFirstLetter(string) {
 function update_status(key){
 	
 	let todoList = get_data();
+	let currentState = 'All';
 
-	let currentState = capitalizeFirstLetter(todoList[key].status);
+	let filters = dom('.ifilter--wrapper li');
+	filters.forEach(function(element, key){
+		if(element.classList.contains('active') == true){
+			currentState = element.innerHTML;
+		}
+	});
+
 
 	if(todoList[key].status == 'active'){
 		todoList[key].status = 'completed';
