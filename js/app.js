@@ -112,6 +112,14 @@ function add_listener(){
 	let itask_btn = dom('.itask--button')[0];
 
 	itask_btn.addEventListener('click',add_data);
+	
+	let itask_name = dom('.itask--name')[0];
+
+	itask_name.addEventListener('keyup',function(event){
+		if (event.keyCode == 13) {
+			itask_btn.click();
+		}
+	});
 
 	let filters = dom('.ifilter--wrapper li');
 	
@@ -148,7 +156,14 @@ function add_data(){
 	
 	let request_status = this.innerHTML;
 	let request_data = dom('.itask--name')[0].value;
-	let currentState = capitalizeFirstLetter('all');
+	let currentState = 'All';
+
+	let filters = dom('.ifilter--wrapper li');
+	filters.forEach(function(element, key){
+		if(element.classList.contains('active') == true){
+			currentState = element.innerHTML;
+		}
+	});
 
 	if(validateInputs() == false){
 		
@@ -176,8 +191,6 @@ function add_data(){
 		todoList[key].task = request_data;
 
 		if (confirm('Are you sure?')) {
-
-			currentState = capitalizeFirstLetter(todoList[key].status);
 
 			set_data(todoList);
 
